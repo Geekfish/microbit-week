@@ -42,7 +42,7 @@ class Roller(object):
             new_die = self.select_die()
         else:
             new_die = self.current_die
-        changed = new_die == self.current_die
+        changed = new_die != self.current_die
         self.current_die = new_die
         return self.current_die, changed
 
@@ -98,7 +98,7 @@ def run():
         roller.tick()
         if not roller.check_for_roll():
           current_die, changed = roller.get_die()
-          if not changed:
+          if changed:
               display.scroll(str(current_die), 80)
         else:
             roller.roll()
